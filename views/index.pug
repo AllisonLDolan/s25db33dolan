@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h1= title
+  p Dogs are cool welcome to #{title}
+
+  button(onclick="faster()" type="button", class="btn btn-secondary") Press Me
+  div#faster Add in extra
+  script. 
+    let value = 1
+    let amt = 2
+    function faster() {
+      amt *= 2 
+      value += amt
+      document.getElementById("faster").innerText = `Faster ${value} times ${amt}`
+    }

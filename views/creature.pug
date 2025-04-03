@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  h1= title
+  -
+    var results = [
+      { creature: "Dragon", habitat: "Mountains", lifespan: 1000 },
+      { creature: "Kraken", habitat: "Ocean", lifespan: 100 },
+      { creature: "Phoenix", habitat: "Desert", lifespan: 500 }
+    ]
+
+  div.container-fluid
+    div.row
+      each item in results
+        div.col-sm-2
+          h3 #{item.creature}
+          p Habitat: #{item.habitat}
+          p Lifespan: #{item.lifespan} years
+  
+  a(href="/creature") Back to Creatures
+
