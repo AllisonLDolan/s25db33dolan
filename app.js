@@ -40,11 +40,11 @@ app.use('/rand', randomRouter);
 app.use('/users', usersRouter);
 
 async function recreateDB() {
-  await Costume.deleteMany();
+  await Creature.deleteMany();
 
-  let instance1 = new Costume({ creature: "Dragon", habitat: "Mountains", lifespan: 1000 });
-  let instance2 = new Costume({ creature: "Kraken", habitat: "Ocean", lifespan: 100 });
-  let instance3 = new Costume({ creature: "Phoenix", habitat: "Desert", lifespan: 500 });
+  let instance1 = new Creature({ creature: "Dragon", habitat: "Mountains", lifespan: 1000 });
+  let instance2 = new Creature({ creature: "Kraken", habitat: "Ocean", lifespan: 100 });
+  let instance3 = new Creature({ creature: "Phoenix", habitat: "Desert", lifespan: 500 });
 
   instance1.save().then(doc => {
     console.log("First object saved");
