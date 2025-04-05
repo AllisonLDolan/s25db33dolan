@@ -7,13 +7,13 @@ router.get('/', function(req, res, next) {
 });
 
 const mongoose = require("mongoose")
-const costumeSchema = mongoose.Schema({
-costume_type: String,
-size: String,
-cost: Number
+const creatureSchema = mongoose.Schema({
+  creature: String,
+  habitat: String,
+  lifespan: Number
 })
-module.exports = mongoose.model("Costume",
-costumeSchema)
+module.exports = mongoose.model("Creature",
+  creatureSchema)
 
 module.exports = router;
 
