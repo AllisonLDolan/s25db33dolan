@@ -12,7 +12,7 @@ mongoose.connect(connectionString);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 db.once("open", function(){
-console.log("Connection to DB succeeded")})
+  console.log("Connection to DB succeeded")})
 
 var Creature = require("./models/creature");
 var indexRouter = require('./routes/index');
