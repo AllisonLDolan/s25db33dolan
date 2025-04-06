@@ -1,13 +1,13 @@
+require('dotenv').config();
+const connectionString = process.env.MONGO_CON;
+mongoose = require('mongoose');
+mongoose.connect(connectionString);
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
-require('dotenv').config();
-const connectionString = process.env.MONGO_CON;
-mongoose = require('mongoose');
-mongoose.connect(connectionString);
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
