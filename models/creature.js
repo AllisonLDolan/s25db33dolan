@@ -4,5 +4,4 @@ const creatureSchema = mongoose.Schema({
   habitat: String,
   lifespan: Number
 })
-module.exports = mongoose.model("Creature",
-  creatureSchema)
+module.exports = mongoose.model("Creature", creatureSchema)
