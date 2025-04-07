@@ -1,9 +1,16 @@
 var Creature = require("../models/creature");
- 
-exports.creature_list = function(req, res) {
-    res.send('NOT IMPLEMENTED: Creature list');
-};
 
+exports.creature_list = async function(req, res) {
+    try{
+        theCreature = await Creature.find();
+        res.send(theCreature);
+    }
+    catch(err){
+        res.status(500);
+        res.send(`{"error": ${err}}`);
+    }
+};
+    
 exports.creature_detail = function(req, res) {
     res.send('NOT IMPLEMENTED: Creature detail: ' + req.params.id);
 };
