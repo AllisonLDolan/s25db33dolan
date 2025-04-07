@@ -25,3 +25,14 @@ exports.creature_delete = function(req, res) {
 exports.creature_update_put = function(req, res) {
     res.send('NOT IMPLEMENTED: Creature update PUT' + req.params.id);
 };
+
+exports.creature_view_all_Page = async function(req, res) {
+    try{
+        theCreature = await Creature.find();
+        res.render('creature', { title: 'Creature Search Results', results: theCreature });
+    }
+    catch(err){
+        res.status(500);
+        res.send(`{"error": ${err}}`);
+    }
+};
