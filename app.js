@@ -20,6 +20,7 @@ db.once("open", function(){
   console.log("Connection to DB succeeded")})
 
 var Creature = require("./models/creature");
+var resourceRouter = require('./routes/resource');
 var indexRouter = require('./routes/index');
 var creatureRouter = require('./routes/creature');
 var gridRouter = require('./routes/grid');
@@ -39,6 +40,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/resource', resourceRouter);
 app.use('/creature', creatureRouter);
 app.use('/gridbuild', gridRouter);
 app.use('/rand', randomRouter);
