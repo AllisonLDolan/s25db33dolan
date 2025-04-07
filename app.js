@@ -8,7 +8,9 @@ var logger = require('morgan');
 
 console.log('hello!')
 const connectionString = process.env.MONGO_CON;
-console.log(connectionString);
+console.log(connectionString, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true});
 mongoose = require('mongoose');
 mongoose.connect(connectionString);
 
