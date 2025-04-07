@@ -36,3 +36,20 @@ exports.creature_view_all_Page = async function(req, res) {
         res.send(`{"error": ${err}}`);
     }
 };
+
+exports.creature_create_post = async function(req, res) {
+    console.log(req.body)
+    let document = new Creature();
+    document.creature = req.body.creature;
+    document.habitat = req.body.habitat;
+    document.lifespan = req.body.lifespan;
+    try{
+        let result = await document.save();
+        res.send(result);
+    }
+    catch(err){
+        res.status(500);
+        res.send(`{"error": ${err}}`);
+    }
+};
+    
