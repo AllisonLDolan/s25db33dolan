@@ -11,8 +11,15 @@ exports.creature_list = async function(req, res) {
     }
 };
     
-exports.creature_detail = function(req, res) {
-    res.send('NOT IMPLEMENTED: Creature detail: ' + req.params.id);
+exports.creature_detail = async function(req, res) {
+    console.log("detail" + req.params.id)
+    try {
+        result = await Creature.findById(req.params.id)
+        res.send(result)
+    } catch (error) {
+        res.status(500)
+        res.send({"error": `document for id ${req.params.id} not found`});
+    }
 };
 
 exports.creature_create_post = function(req, res) {
@@ -22,8 +29,23 @@ exports.creature_create_post = function(req, res) {
 exports.creature_delete = function(req, res) {
     res.send('NOT IMPLEMENTED: Creature delete DELETE ' + req.params.id);
 };
-exports.creature_update_put = function(req, res) {
-    res.send('NOT IMPLEMENTED: Creature update PUT' + req.params.id);
+exports.creature_update_put = async function(req, res) {
+    console.log(`update on id ${req.params.id} with body
+    ${JSON.stringify(req.body)}`)
+    try {
+        let toUpdate = await Creature.findById( req.params.id)
+        if(req.body.creature_type)
+        toUpdate.creature = req.body.creature;
+        if(req.body.habitat) toUpdate.habitat = req.body.habitat;
+        if(req.body.lifespan) toUpdate.lifespan = req.body.lifespan;
+        let result = await toUpdate.save();
+        console.log("Sucess " + result)
+        res.send(result)
+    } catch (err) {
+        res.status(500)
+        res.send(`{"error": ${err}: Update for id ${req.params.id}
+        failed`);
+    }
 };
 
 exports.creature_view_all_Page = async function(req, res) {
