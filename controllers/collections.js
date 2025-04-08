@@ -29,24 +29,28 @@ exports.creature_create_post = function(req, res) {
 exports.creature_delete = function(req, res) {
     res.send('NOT IMPLEMENTED: Creature delete DELETE ' + req.params.id);
 };
-exports.creature_update_put = async function(req, res) {
-    console.log(`update on id ${req.params.id} with body
-    ${JSON.stringify(req.body)}`)
+
+exports.creature_update_put = async function(req, res) {    
     try {
-        let toUpdate = await Creature.findById( req.params.id)
-        if(req.body.creature_type)
-        toUpdate.creature = req.body.creature;
-        if(req.body.habitat) toUpdate.habitat = req.body.habitat;
-        if(req.body.lifespan) toUpdate.lifespan = req.body.lifespan;
-        let result = await toUpdate.save();
-        console.log("Sucess " + result)
-        res.send(result)
+      let toUpdate = await Creature.findById(req.params.id);
+      
+      if (req.body.creature) toUpdate.creature = req.body.creature;
+      if (req.body.habitat) toUpdate.habitat = req.body.habitat;
+      if (req.body.lifespan) toUpdate.lifespan = req.body.lifespan;
+  
+      if (req.body.checkboxsale) {
+        toUpdate.sale = true;
+      } else {
+        toUpdate.sale = false;
+      }
+  
+      let result = await toUpdate.save();
+      console.log("Success: " + result);
+      res.send(result);
     } catch (err) {
-        res.status(500)
-        res.send(`{"error": ${err}: Update for id ${req.params.id}
-        failed`);
+      res.status(500).send(`{"error": ${err}: Update for id ${req.params.id} failed}`);
     }
-};
+  };
 
 exports.creature_view_all_Page = async function(req, res) {
     try{
