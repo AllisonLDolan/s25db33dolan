@@ -15,6 +15,8 @@ router.put('/creature/:id', creature_controller.creature_update_put);
 
 router.get('/creature/:id', creature_controller.creature_detail);
 
+router.get('/detail', creature_controlers.creature_view_one_Page);
+
 router.get('/creature', creature_controller.creature_list);
 
 module.exports = router;
