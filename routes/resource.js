@@ -19,6 +19,8 @@ router.get('/detail', creature_controller.creature_view_one_Page);
 
 router.get('/creature', creature_controller.creature_list);
 
+router.get('/create', creature_controller.creature_create_Page);
+
 module.exports = router;
 
 exports.api = function(req, res) {
