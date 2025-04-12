@@ -1,0 +1,53 @@
+block content
+  h1= title
+  
+  div
+    div.row
+      div(class='creatureAttr mr-3') Creature ID:
+      div #{toShow._id}
+
+  form(id='CreatureForm', action=`/creature/${toShow._id}?_method=PUT`, method='POST')
+    div.form-group
+      label.creatureAttr(for='creature') Creature Type
+      input#creature(type='text', name='creature', value=toShow.creature)
+    
+    div.form-group
+      label.creatureAttr(for='habitat') Creature Habitat
+      input#habitat(type='text', name='habitat', value=toShow.habitat)
+    
+    div.form-group
+      label.creatureAttr(for='lifespan') Creature Lifespan
+      input#lifespan(type='number', name='lifespan', value=toShow.lifespan)
+    
+    div.form-group
+      label.creatureAttr(for='checkboxsale') On Sale?
+      input#checkboxsale(type='checkbox', name='checkboxsale', checked=toShow.sale)
+    
+    input(type='submit', value='Update Creature')
+
+  script.
+    document.forms['CreatureUpdateForm'].addEventListener('submit', (event) => {
+      event.preventDefault();
+      
+      const submitBtn = event.target.querySelector('input[type="submit"]');
+      submitBtn.disabled = true;
+      submitBtn.value = 'Updating...';
+      
+      fetch(event.target.action, {
+        method: 'POST',
+        body: new URLSearchParams(new FormData(event.target)),
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      }).then((resp) => {
+        if (!resp.ok) throw new Error('Update failed');
+        return resp.json();
+      }).then((body) => {
+        alert("Update succeeded");
+        window.location.href = '/creature';
+      }).catch((error) => {
+        alert("Update failed: " + error);
+        submitBtn.disabled = false;
+        submitBtn.value = 'Update';
+      });
+    });

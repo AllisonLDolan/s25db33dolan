@@ -21,6 +21,8 @@ router.get('/creature', creature_controller.creature_list);
 
 router.get('/create', creature_controller.creature_create_Page);
 
+router.get('/update', creature_controller.creature_update_Page);
+
 module.exports = router;
 
 exports.api = function(req, res) {

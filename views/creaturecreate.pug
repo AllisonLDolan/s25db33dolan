@@ -1,30 +1,30 @@
 extends layout
+
 block content
-h1= title
-form(id='CreatureForm', action="/resource/creature", method="POST")
-div.form-group
-label.creatureAttr(for='creature') Creature type
-input#creature(type='text', name='creature')
-div.form-group
-label.creatureAttr(for='habitat') Creature habitat
-input#habitat(type='text', name='habitat')
-div.form-group
-label.creatureAttr(for='lifespan') Creature lifespan
-input#lifespan(type='number', name='lifespan')
-input(type="submit")
-script.
-document.forms['CreatureForm'].addEventListener('submit', (event) => {
-event.preventDefault();
-// TODO do something here to show user that form is being submitted
-fetch(event.target.action, {
-method: 'POST',
-body: new URLSearchParams(new FormData(event.target)) // event.target is the form
-}).then((resp) => {
-return resp.json();
-}).then((body) => {
-    alert("Save succeded")
-}).catch((error) => {
-    alert("Save failed " + error )
-});
-});
-router.get('/update', creature_controllers.creature_update_Page);
+  h1= title
+  form(id='CreatureForm', action="/resource/creature", method="POST")
+    .form-group
+      label.creatureAttr(for='creature') Creature type
+      input#creature(type='text', name='creature', value=toShow.creature)
+    .form-group
+      label.creatureAttr(for='habitat') Creature habitat
+      input#habitat(type='text', name='habitat', value=toShow.habitat)
+    .form-group
+      label.creatureAttr(for='lifespan') Creature lifespan
+      input#lifespan(type='number', name='lifespan', value=toShow.lifespan)
+    input(type="submit")
+  
+  script.
+    document.forms['CreatureForm'].addEventListener('submit', (event) => {
+      event.preventDefault();
+      fetch(event.target.action, {
+        method: 'POST',
+        body: new URLSearchParams(new FormData(event.target))
+      }).then((resp) => {
+        return resp.json();
+      }).then((body) => {
+        alert("Save succeeded");
+      }).catch((error) => {
+        alert("Save failed " + error);
+      });
+    });
