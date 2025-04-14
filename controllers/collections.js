@@ -38,19 +38,9 @@ exports.creature_create_post = async function(req, res) {
     }
 };
 
-exports.creature_delete_Page = async function(req, res) {
-    console.log("Delete view for id " + req.query.id)
-    try{
-        result = await Creature.findById(req.query.id)
-        res.render('creaturedelete', { title: 'Creature Delete', toShow:
-        result });
-    }
-    catch(err){
-        res.status(500)
-        res.send(`{'error': '${err}'}`);
-    }
+exports.creature_delete = function(req, res) {
+    res.send('NOT IMPLEMENTED: Creature delete DELETE ' + req.params.id);
 };
-    
 
 exports.creature_update_put = async function(req, res) {    
     try {
@@ -113,6 +103,19 @@ exports.creature_update_Page = async function(req, res) {
     try{
         let result = await Creature.findById(req.query.id)
         res.render('creatureupdate', { title: 'Creature Update', toShow: result });
+    }
+    catch(err){
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
+    }
+};
+
+exports.creature_delete_Page = async function(req, res) {
+    console.log("Delete view for id " + req.query.id)
+    try{
+        result = await Creature.findById(req.query.id)
+        res.render('creaturedelete', { title: 'Creature Delete', toShow:
+        result });
     }
     catch(err){
         res.status(500)
