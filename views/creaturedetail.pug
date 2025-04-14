@@ -2,12 +2,11 @@ extends layout
 
 block content
   h1= title
-
+  
   - let creatureid = toShow._id
   - let creature = toShow.creature
   - let creaturehabitat = toShow.habitat 
   - let creaturelifespan = toShow.lifespan
-
   div
     div.row
       div(class='creatureAttr mr-3') Creature ID is:
