@@ -4,14 +4,14 @@ block content
   h1= title
   form(id='CreatureForm', action="/resource/creature", method="POST")
     .form-group
-      label.creatureAttr(for='creature') Creature type
-      input#creature(type='text', name='creature', value=toShow.creature)
+        label.creatureAttr(for='creature') Creature type
+        input#creature(type='text', name='creature')
     .form-group
-      label.creatureAttr(for='habitat') Creature habitat
-      input#habitat(type='text', name='habitat', value=toShow.habitat)
+        label.creatureAttr(for='habitat') Creature habitat
+        input#habitat(type='text', name='habitat')
     .form-group
-      label.creatureAttr(for='lifespan') Creature lifespan
-      input#lifespan(type='number', name='lifespan', value=toShow.lifespan)
+        label.creatureAttr(for='lifespan') Creature lifespan
+        input#lifespan(type='number', name='lifespan')
     input(type="submit")
   
   script.

@@ -2,46 +2,43 @@ extends layout
 
 block content
   h1= title
-  
-  - let creatureid = toShow._id
-  - let creature = toShow.creature
-  - let creaturelifespan = toShow.lifespan
-  - let creaturehabitat = toShow.habitat
-  
-  div.row(class='mb-2')
-    div.mr-1 ID is
-    div #{creatureid}
-  
-  - let actionid = "/resource/creature/" + creatureid
-  form(id='CreatureForm', action= actionid, method="PUT")
-    div.form-group
-      label.creatureAttr(for='creature') Creature type
-      input#creature(type='text', name='creature', value= creature )
+    - let creatureid = toShow._id
+    - let creature = toShow.creature
+    - let creaturelifespan = toShow.lifespan
+    - let creaturehabitat = toShow.habitat
+
+    div.row(class='mb-2')
+      div.mr-1 ID is
+      div #{creatureid}
     
-    div.form-group
-      label.creatureAttr(for='habitat') Creature habitat
-      input#habitat(type='text', name='habitat', value= creaturehabitat )
+    - let actionid = "/resource/creature/" + creatureid
+    form(id='CreatureForm', action= actionid, method="PUT")
+      div.form-group
+        label.creatureAttr(for='creature') Creature type
+        input#creature(type='text', name='creature', value= creature )
+      
+      div.form-group
+        label.creatureAttr(for='habitat') Creature habitat
+        input#habitat(type='text', name='habitat', value= creaturehabitat )
+      
+      div.form-group
+        label.creatureAttr(for='lifespan') Creature lifespan
+        input#lifespan(type='number', name='lifespan', value= creaturelifespan )
+      
+      input(type="submit")
     
-    div.form-group
-      label.creatureAttr(for='lifespan') Creature lifespan
-      input#lifespan(type='number', name='lifespan', value= creaturelifespan )
-    
-    input(type="submit")
-  
-  script.
-    document.forms['CreatureForm'].addEventListener('submit', (event) => {
-      event.preventDefault();
-      // TODO do something here to show user that form is being submitted
-      fetch(event.target.action, {
-        method: 'PUT',
-        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
-      }).then((resp) => {
-        return resp.json(); // or resp.text() or whatever the server sends
-      }).then((body) => {
-        alert("Update succeded")
-        // TODO handle body
-      }).catch((error) => {
-        // TODO handle error
-        alert("Update failed " + error )
+    script.
+      document.forms['CreatureForm'].addEventListener('submit', (event) => {
+        event.preventDefault();
+        fetch(event.target.action, {
+          method: 'PUT',
+          body: new URLSearchParams(new FormData(event.target))
+        }).then((resp) => {
+          return resp.json();
+        }).then((body) => {
+          alert("Update succeeded");
+          window.location.href = '/creatures'; // Redirect after success
+        }).catch((error) => {
+          alert("Update failed: " + error);
+        });
       });
-    });
