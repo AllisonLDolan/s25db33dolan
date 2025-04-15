@@ -1,6 +1,6 @@
 extends layout
 block content
-  h1= title
+  h1(class="creaturetitle")= title
   if (toShow == null)
     h2 No instance to delete
   else
@@ -10,18 +10,18 @@ block content
     - let creaturehabitat = toShow.habitat
     - let actionid = "/resource/creature/" + creatureid
     script let actionid = "#{actionid}"
-    div
-      div.row
-        div(class='creatureAttr mr-3') Creature ID is:
+    div.detaillist
+      div.detailrow
+        div(class='creatureAttr') Creature ID is:
         div #{creatureid}
-      div.row
-        div(class='creatureAttr mr-3') Creature Type is:
+      div.detailrow
+        div(class='creatureAttr') Creature Type is:
         div #{creature}
-      div.row
-        div(class='creatureAttr mr-3') Creature Habitat is:
+      div.detailrow
+        div(class='creatureAttr') Creature Habitat is:
         div #{creaturehabitat}
-      div.row
-        div(class='creatureAttr mr-3') Creature Lifespan is:
+      div.detailrow
+        div(class='creatureAttr') Creature Lifespan is:
         div #{creaturelifespan}
       button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
       button(class="btn btn-secondary m-2" onclick="cancel()") Cancel

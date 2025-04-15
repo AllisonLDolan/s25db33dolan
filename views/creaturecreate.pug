@@ -1,18 +1,18 @@
 extends layout
 
 block content
-  h1= title
+  h1(class="creaturetitle")= title
   form(id='CreatureForm', action="/resource/creature", method="POST")
     .form-group
         label.creatureAttr(for='creature') Creature type
-        input#creature(type='text', name='creature')
+        input#creature(class='input', type='text', name='creature')
     .form-group
         label.creatureAttr(for='habitat') Creature habitat
-        input#habitat(type='text', name='habitat')
+        input#habitat(class='input', type='text', name='habitat')
     .form-group
         label.creatureAttr(for='lifespan') Creature lifespan
-        input#lifespan(type='number', name='lifespan')
-    input(type="submit")
+        input#lifespan(class='input', type='number', name='lifespan')
+    input(class="submitbtn", type="submit")
   
   script.
     document.forms['CreatureForm'].addEventListener('submit', (event) => {

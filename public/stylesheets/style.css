@@ -10,5 +10,43 @@ a {
 .creatureAttr {
   background-color: aquamarine;
   width: 120px;
+  padding: 10px;
+  text-align: right;
+  margin-right: 10px; 
+  font-size: 14px;
+}
+
+.input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 14px;
 }
   
+.submitbtn {
+  background-color: #01db72;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 14px;
+  width: 21%
+}
+
+.creaturetitle {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800; /* Extra-bold */
+  color: #2c3e50;
+}
+
+.detailrow {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+.detaillist{
+  background-color: #fff;
+  margin: 2rem auto;
+  padding: 2rem;
+}
