@@ -11,3 +11,15 @@ block content
           |  (#{creature.habitat}) - Lifespan: #{creature.lifespan}
   else
     p No creatures found in database
+
+  - let items = results;
+  div(class="container-fluid")
+    div(class="row")
+      each item in items
+        div(class="row-sm-2", class="m-1") Item #{item.creature}(#{item.habitat}) is #{item.lifespan}
+          button.btn(class="btn-primary ml-1", onclick=`dispatch("/creature/update?id=${item._id}")`) Update
+
+  script.
+    function dispatch(path){
+      window.location.href=path
+    }
