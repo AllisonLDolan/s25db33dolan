@@ -40,17 +40,20 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(require('express-session')({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use('/', indexRouter);
 app.use('/resource', resourceRouter);
 app.use('/creature', creatureRouter);
 app.use('/gridbuild', gridRouter);
 app.use('/rand', randomRouter);
 app.use('/users', usersRouter);
-
-var Account =require('./models/account');
-passport.use(new LocalStrategy(Account.authenticate()));
-passport.serializeUser(Account.serializeUser());
-passport.deserializeUser(Account.deserializeUser())
 
 passport.use(new LocalStrategy(
   function(username, password, done) {
@@ -70,15 +73,6 @@ passport.use(new LocalStrategy(
         })
     })
   )
-        
-
-  app.use(require('express-session')({
-      secret: 'keyboard cat',
-      resave: false,
-      saveUninitialized: false
-    }));
-  app.use(passport.initialize());
-  app.use(passport.session());
     
   
 
@@ -111,6 +105,11 @@ async function recreateDB() {
 let reseed = true;
 if (reseed) { recreateDB(); }
 
+
+var Account =require('./models/account');
+passport.use(new LocalStrategy(Account.authenticate()));
+passport.serializeUser(Account.serializeUser());
+passport.deserializeUser(Account.deserializeUser())
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
